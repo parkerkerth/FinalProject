@@ -27,6 +27,13 @@ CHALLENGES
    ????
    
    
+   
+   NOTES 5 / 8 FRIDAY
+   File reader, then pass new file reader into a buffer reader
+   Do on buffer reader, reader.readline, assign it to a var and pass the string into json parser.parse
+   
+   First start thinking about quereies
+   If takes to much time, think about what other tables to add
   
 
 …?
