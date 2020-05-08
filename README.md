@@ -23,6 +23,10 @@ CHALLENGES
    https://www.oracle.com/technical-resources/articles/java/json.html
    JSON to JAVA
    
+   https://www.brentozar.com/archive/2013/02/disabling-vs-dropping-indexes/
+   https://blog.sqlauthority.com/2007/05/17/sql-server-disable-index-enable-index-alter-index/
+   Altering indexes
+   
    QUESTIONS FOR BEN
    ????
    
@@ -34,6 +38,11 @@ CHALLENGES
    
    First start thinking about quereies
    If takes to much time, think about what other tables to add
+   
+   
+   TODO:
+   Filter reviews by fans, then implement interface for person to search for resturant and order review by fans
+   Filter restruants by number of reviews
   
 
 …?
