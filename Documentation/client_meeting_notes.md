@@ -18,3 +18,20 @@ Plan document
   - goals
   - anticipated challenges
 
+2020-5-8
+
+What's the deal with git branches?
+
+JSON object per line
+
+BufferedReader, etc.
+
+Afternoon.
+
+data reading is slow
+  - experiments
+
+https://arxiv.org/abs/1204.2804
+
+partial indexes
+
