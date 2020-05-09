@@ -39,11 +39,14 @@ CHALLENGES
    First start thinking about quereies
    If takes to much time, think about what other tables to add
    
+   Skip every other line
+   
    
    TODO:
    Filter reviews by fans, then implement interface for person to search for resturant and order review by fans
    Filter restruants by number of reviews
   
+  Multiple indexes
 
 …?
 
