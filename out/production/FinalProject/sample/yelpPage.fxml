@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.viewsController">
+   <children>
+      <Pane prefHeight="600.0" prefWidth="600.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#goToFoodBusinesses" prefHeight="300.0" prefWidth="300.0" text="Food" />
+            <Button layoutX="300.0" mnemonicParsing="false" onAction="#goToActiveLifeBusinesses" prefHeight="300.0" prefWidth="300.0" text="Active Life" />
+            <Button layoutY="300.0" mnemonicParsing="false" onAction="#goToHotelsAndTravelBusinesses" prefHeight="300.0" prefWidth="300.0" text="Hotels &amp; Travel" />
+            <Button layoutX="300.0" layoutY="300.0" mnemonicParsing="false" onAction="#goToShoppingBusinesses" prefHeight="300.0" prefWidth="300.0" text="Shopping" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
