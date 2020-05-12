@@ -28,7 +28,7 @@ CHALLENGES
    Altering indexes
    
    QUESTIONS FOR BEN
-   ????
+   Database disk image is malformed
    
    
    
