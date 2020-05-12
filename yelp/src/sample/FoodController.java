@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -24,16 +25,25 @@ public class FoodController implements Initializable {
     private TableColumn<Business, String> nameColumn;
     @FXML
     private TableColumn<Business, Double> starColumn;
+    @FXML
+    private Button food;
+    @FXML
+    private Button active;
+    @FXML
+    private Button shopping;
+    @FXML
+    private Button hotel;
+
 
     ObservableList<Business> oblist = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadData();
+
     }
 
-    private void loadData(){
-        String sql = "SELECT business_id, name, stars FROM business WHERE categories LIKE '%Food%' ORDER BY stars DESC LIMIT 20";
+    private void loadData(String pageName){
+        String sql = "SELECT business_id, name, stars FROM business WHERE categories LIKE " + "'%"+pageName+"%'"+"ORDER BY stars DESC LIMIT 20";
         try {
             Connection con = DBConnection.connect();
             ResultSet rs = con.createStatement().executeQuery(sql);
@@ -52,13 +62,13 @@ public class FoodController implements Initializable {
         starColumn.setCellValueFactory(new PropertyValueFactory<>("stars"));
         table.setItems(oblist);
     }
+    public void nextPage() {
 
-//    EventHandler<MouseEvent> eventHandler = new EventHandler<MouseEvent>() {
-//        @Override
-//        public void handle(MouseEvent event) {
-//            System.out.println("Hello World");
-//        }
-//    };
+        String buttonText =
+        loadData(String buttonText);
+    }
+
+
 
     @FXML
     public void goToBusiness(MouseEvent event) {
