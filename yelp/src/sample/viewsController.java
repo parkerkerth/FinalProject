@@ -25,18 +25,19 @@ import java.util.ResourceBundle;
 
 public class viewsController implements Initializable {
 
-    @FXML
-    private TableView<Business> table;
-    @FXML
-    private TableColumn<Business, String> nameColumn;
-    @FXML
-    private TableColumn<Business, Double> starColumn;
-
-    ObservableList<Business> oblist = FXCollections.observableArrayList();
+    private static String page;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    public void setPage(String page) {
+        this.page = page;
+    }
+
+    public static String getPage() {
+        return page;
     }
 
     //Button Text should be identical to the value of the parameter "title" JMA 5/12/20
@@ -44,15 +45,15 @@ public class viewsController implements Initializable {
         Displays the Curated Businesses for each category
         categories include: Food, Active Life, Hotels & Travel, and Shopping
      */
-    public void displayCuratedBusinesses(String title, String fxmlPageName, ActionEvent actionEvent) {
+    public void displayCuratedBusinesses(String title) {
         try {
             Stage newWindow = new Stage();
             newWindow.setTitle(title);
+            setPage(title);
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Pane root = fxmlLoader.load(getClass().getResource(fxmlPageName).openStream());
-            newWindow.setScene(new Scene(root, 600, 600));
-            newWindow.showAndWait();
-            loadData(title);
+            Pane root = fxmlLoader.load(getClass().getResource("displayForCuratedBusinesses.fxml").openStream());
+            newWindow.setScene(new Scene(root));
+            newWindow.show();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -60,44 +61,19 @@ public class viewsController implements Initializable {
     }
 
     public void goToFoodBusinesses(ActionEvent actionEvent) {
-        displayCuratedBusinesses("Food", "displayForCuratedBusinesses.fxml", actionEvent);
+        displayCuratedBusinesses("Food");
     }
 
     public void goToActiveLifeBusinesses(ActionEvent actionEvent) {
-        displayCuratedBusinesses("Active Life", "displayForCuratedBusinesses.fxml", actionEvent);
+        displayCuratedBusinesses("Active Life");
     }
 
     public void goToHotelsAndTravelBusinesses(ActionEvent actionEvent) {
-        displayCuratedBusinesses("Hotels & Travel", "displayForCuratedBusinesses.fxml", actionEvent);
+        displayCuratedBusinesses("Hotels & Travel");
     }
 
     public void goToShoppingBusinesses(ActionEvent actionEvent) {
-        displayCuratedBusinesses("Shopping", "displayForCuratedBusinesses.fxml", actionEvent);
+        displayCuratedBusinesses("Shopping");
     }
 
-    private void loadData(String pageName) {
-        String sql = "SELECT business_id, name, stars FROM business WHERE categories LIKE " + "'%" + pageName + "%'" + "ORDER BY stars DESC LIMIT 20";
-        try {
-            Connection con = DBConnection.connect();
-            ResultSet rs = con.createStatement().executeQuery(sql);
-
-            while (rs.next()) {
-                String id = rs.getString("business_id");
-                String name = rs.getString("name");
-                Double stars = rs.getDouble("stars");
-                oblist.add(new Business(id, name, stars));
-            }
-
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        starColumn.setCellValueFactory(new PropertyValueFactory<>("stars"));
-        table.setItems(oblist);
-    }
-
-    @FXML
-    public void goToBusiness(MouseEvent event) {
-        Business business = table.getSelectionModel().getSelectedItem();
-    }
 }
