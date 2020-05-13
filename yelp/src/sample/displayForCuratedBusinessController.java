@@ -2,11 +2,10 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -19,7 +18,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class Controller implements Initializable {
+import static sample.viewsController.getPage;
+
+public class displayForCuratedBusinessController implements Initializable {
 
     @FXML
     private TableView<Business> table;
@@ -27,12 +28,15 @@ public class Controller implements Initializable {
     private TableColumn<Business, String> nameColumn;
     @FXML
     private TableColumn<Business, Double> starColumn;
+    @FXML
+    private Button back;
 
     ObservableList<Business> oblist = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        loadData("Food");
+        String pageName = getPage();
+        loadData(pageName);
     }
 
     private void loadData(String pageName) {
@@ -57,7 +61,14 @@ public class Controller implements Initializable {
     }
 
     @FXML
+    public void goBack(ActionEvent event){
+        Stage stage = (Stage) back.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
     public void goToBusiness(MouseEvent event) {
         Business business = table.getSelectionModel().getSelectedItem();
     }
+
 }
