@@ -23,7 +23,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class viewsController implements Initializable {
+public class  viewsController implements Initializable {
 
     private static String page;
 

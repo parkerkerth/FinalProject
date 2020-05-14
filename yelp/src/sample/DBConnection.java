@@ -14,6 +14,7 @@ public class DBConnection {
         try {
             // db parameters
             String url = "jdbc:sqlite:"+System.getProperty("user.dir")+"/yelpdb.db";
+            //String url = "jdbc:sqlite:/Users/elizaneiman-golden/Desktop/compsci/yelpdb.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
