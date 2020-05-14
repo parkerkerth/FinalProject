@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.text.Text;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -20,6 +21,9 @@ public class DisplayReviewsController implements Initializable {
 
     @FXML
     private TextArea textArea;
+    private final String STARS = " stars\n";
+    private final String ELITE = " -- Elite reviewer for ";
+    private final String YEARS = " years\n\n";
 
 
     @Override
@@ -46,12 +50,16 @@ public class DisplayReviewsController implements Initializable {
                     String[] years = elite.split(",");
                     yearsElite = years.length;
                 }
-                allReviews = allReviews + stars.toString() + " stars\n" + text + "\n" + name + " -- Elite reviewer for " + yearsElite + " years\n\n";
+
+                allReviews = allReviews + stars.toString() + STARS + text + "\n" + name + ELITE + yearsElite + YEARS;
             }
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+        textArea.setWrapText(true);
         textArea.setText(allReviews);
+        textArea.setEditable(false);
     }
+    
 }

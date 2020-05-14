@@ -25,55 +25,77 @@ import java.util.ResourceBundle;
 
 public class  viewsController implements Initializable {
 
-    private static String page;
+        private static String page;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
+        @Override
+        public void initialize(URL location, ResourceBundle resources) {
 
-    }
-
-    public void setPage(String page) {
-        this.page = page;
-    }
-
-    public static String getPage() {
-        return page;
-    }
-
-    //Button Text should be identical to the value of the parameter "title" JMA 5/12/20
-    /*
-        Displays the Curated Businesses for each category
-        categories include: Food, Active Life, Hotels & Travel, and Shopping
-     */
-    public void displayCuratedBusinesses(String title) {
-        try {
-            Stage newWindow = new Stage();
-            newWindow.setTitle(title);
-            setPage(title);
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            Pane root = fxmlLoader.load(getClass().getResource("displayForCuratedBusinesses.fxml").openStream());
-            newWindow.setScene(new Scene(root));
-            newWindow.show();
-
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-    }
+        /*
+            setter for the page
+         */
+        public void setPage(String page) {
+            this.page = page;
+        }
 
-    public void goToFoodBusinesses(ActionEvent actionEvent) {
-        displayCuratedBusinesses("Food");
-    }
+        /*
+            getter for the page
+         */
+        public static String getPage() {
+            return page;
+        }
 
-    public void goToActiveLifeBusinesses(ActionEvent actionEvent) {
-        displayCuratedBusinesses("Active Life");
-    }
+        /*
+            Displays the Curated Businesses for each category
+            categories include: Food, Active Life, Hotels & Travel, and Shopping
+         */
+        public void displayCuratedBusinesses(String title) {
+            try {
+                Stage newWindow = new Stage();
+                newWindow.setTitle(title);
+                setPage(title);
+                FXMLLoader fxmlLoader = new FXMLLoader();
+                Pane root = fxmlLoader.load(getClass().getResource("displayForCuratedBusinesses.fxml").openStream());
+                newWindow.setScene(new Scene(root));
+                newWindow.show();
 
-    public void goToHotelsAndTravelBusinesses(ActionEvent actionEvent) {
-        displayCuratedBusinesses("Hotels & Travel");
-    }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
-    public void goToShoppingBusinesses(ActionEvent actionEvent) {
-        displayCuratedBusinesses("Shopping");
-    }
+        /*
+            Displays the Food businesses with the highest ratings
+            when the Food Button is clicked
+            Event Handling
+         */
+        public void goToFoodBusinesses(ActionEvent actionEvent) {
+            displayCuratedBusinesses("Food");
+        }
+        /*
+            Displays the Active Life businesses with the highest ratings
+            when the Active Life Button is clicked
+            Event Handling
+         */
+        public void goToActiveLifeBusinesses(ActionEvent actionEvent) {
+            displayCuratedBusinesses("Active Life");
+        }
+        /*
+            Displays the Hotels & Travel businesses with the highest ratings
+            when the Hotels & Travel Button is clicked
+            Event Handling
+         */
+        public void goToHotelsAndTravelBusinesses(ActionEvent actionEvent) {
+            displayCuratedBusinesses("Hotels & Travel");
+        }
+
+        /*
+            Displays the Shopping businesses with the highest ratings
+            when the Shopping Button is clicked
+            Event Handling
+         */
+        public void goToShoppingBusinesses(ActionEvent actionEvent) {
+            displayCuratedBusinesses("Shopping");
+        }
 
 }
