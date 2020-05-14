@@ -29,7 +29,9 @@ public class DisplayReviewsController implements Initializable {
     }
 
     private void loadReviews(String id) {
-        String sql = "SELECT text, name, stars, elite FROM review, user WHERE business_id = '" + id + "' ORDER BY LENGTH(elite) DESC LIMIT 10";
+        String sql = "SELECT text, name, stars, elite FROM review JOIN user " +
+                "ON review.user_id = user.user_id WHERE business_id = '" + id +
+                "' ORDER BY LENGTH(elite) DESC LIMIT 10";
         String allReviews = "";
         try {
             Connection con = DBConnection.connect();
