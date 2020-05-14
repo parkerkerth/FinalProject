@@ -27,6 +27,8 @@ public class DisplayReviewsController implements Initializable {
     private final String STARS = " stars\n";
     private final String ELITE = " -- Elite reviewer for ";
     private final String YEARS = " years\n\n";
+    private final String YEAR = " year\n\n";
+    private final String NOT = " -- Not an elite reviewer\n\n";
 
     @FXML
     private Button back;
@@ -52,12 +54,19 @@ public class DisplayReviewsController implements Initializable {
                 String name = rs.getString("name");
                 String elite = rs.getString("elite");
                 int yearsElite = 0;
-                if (elite != "") {
+                if (elite.length() > 3) {
                     String[] years = elite.split(",");
                     yearsElite = years.length;
                 }
-
-                allReviews = allReviews + stars.toString() + STARS + text + "\n" + name + ELITE + yearsElite + YEARS;
+                if(yearsElite == 0) {
+                    allReviews = allReviews + stars.toString() + STARS + text + "\n" + name + NOT;
+                }
+                else if (yearsElite == 1) {
+                    allReviews = allReviews + stars.toString() + STARS + text + "\n" + name + ELITE + yearsElite + YEAR;
+                }
+                else {
+                    allReviews = allReviews + stars.toString() + STARS + text + "\n" + name + ELITE + yearsElite + YEARS;
+                }
             }
 
         } catch (SQLException throwables) {
