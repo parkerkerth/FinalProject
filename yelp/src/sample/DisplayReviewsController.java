@@ -61,5 +61,5 @@ public class DisplayReviewsController implements Initializable {
         textArea.setText(allReviews);
         textArea.setEditable(false);
     }
-    
+
 }

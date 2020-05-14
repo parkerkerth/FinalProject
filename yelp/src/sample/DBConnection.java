@@ -3,6 +3,7 @@ package sample;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DBConnection {
 
@@ -24,5 +25,17 @@ public class DBConnection {
             System.out.println(e.getMessage());
         }
         return conn;
+    }
+
+    public static void closeStatement(Statement statement) {
+        try{
+            if(null != statement){
+                statement.close();
+                statement = null;
+            }
+
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }
