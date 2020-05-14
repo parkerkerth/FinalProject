@@ -2,11 +2,14 @@ package sample;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Connection;
@@ -24,6 +27,9 @@ public class DisplayReviewsController implements Initializable {
     private final String STARS = " stars\n";
     private final String ELITE = " -- Elite reviewer for ";
     private final String YEARS = " years\n\n";
+
+    @FXML
+    private Button back;
 
 
     @Override
@@ -60,6 +66,12 @@ public class DisplayReviewsController implements Initializable {
         textArea.setWrapText(true);
         textArea.setText(allReviews);
         textArea.setEditable(false);
+    }
+
+    @FXML
+    public void goBack(ActionEvent event){
+        Stage stage = (Stage) back.getScene().getWindow();
+        stage.close();
     }
     
 }
