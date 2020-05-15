@@ -3,25 +3,33 @@ import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertSame;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class microTests {
-    Connection connection;
 
-    @BeforeEach
-    public void before() {
+    private static Connection connection;
+
+    @BeforeAll
+    public static void setConnection() {
         connection = DBConnection.connect();
     }
 
-    @AfterEach
-    public void after() {
-        DBConnection.connect();
+    @Test
+    public void testConnection() {
+        assertNotNull(connection);
+    }
+
+    @AfterAll
+    public static void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Test
