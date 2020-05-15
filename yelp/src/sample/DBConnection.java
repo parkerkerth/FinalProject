@@ -5,6 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Creates the connection to SQLite
+ */
 public class DBConnection {
 
     /**
@@ -14,8 +17,8 @@ public class DBConnection {
         Connection conn = null;
         try {
             // db parameters
-            String url = "jdbc:sqlite:"+System.getProperty("user.dir")+"/yelpdb.db";
-           // String url = "jdbc:sqlite:/Users/elizaneiman-golden/Desktop/compsci/yelpdb.db";
+            String url = "jdbc:sqlite:" + System.getProperty("user.dir") + "/yelpdb.db";
+            // String url = "jdbc:sqlite:/Users/elizaneiman-golden/Desktop/compsci/yelpdb.db";
             // create a connection to the database
             conn = DriverManager.getConnection(url);
 
@@ -27,9 +30,12 @@ public class DBConnection {
         return conn;
     }
 
+    /**
+     * @param statement
+     */
     public static void closeStatement(Statement statement) {
-        try{
-            if(null != statement){
+        try {
+            if (null != statement) {
                 statement.close();
                 statement = null;
             }

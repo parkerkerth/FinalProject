@@ -1,11 +1,14 @@
 package sample;
+
 import java.sql.*;
 
 import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/**
+ * Tests class
+ */
 public class microTests {
 
     private static Connection connection;
@@ -20,7 +23,9 @@ public class microTests {
         assertNotNull(connection);
     }
 
-    //tests that calculateElite returns 0 when the elite column is empty
+    /**
+     * tests that calculateElite returns 0 when the elite column is empty
+     */
     @Test
     public void testCalculateElite() {
         String sql = "SELECT elite FROM user WHERE user_id = 'xU02wVd4akbHrk8JiOdDYQ'";
@@ -35,7 +40,7 @@ public class microTests {
     }
 
     @Test
-    public void closeStatementShouldCloseStatement() throws SQLException{
+    public void closeStatementShouldCloseStatement() throws SQLException {
         Statement statement = connection.createStatement();
         DBConnection.closeStatement(statement);
         assertTrue(statement.isClosed());

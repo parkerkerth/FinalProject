@@ -23,79 +23,105 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-public class  viewsController implements Initializable {
+/**
+ * Controller for the main display stage
+ */
+public class viewsController implements Initializable {
 
-        private static String page;
+    private static String page;
 
-        @Override
-        public void initialize(URL location, ResourceBundle resources) {
+    /**
+     * Initalizes the page
+     *
+     * @param location
+     * @param resources
+     */
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
 
-        }
-        /*
-            setter for the page
-         */
-        public void setPage(String page) {
-            this.page = page;
-        }
+    }
 
-        /*
-            getter for the page
-         */
-        public static String getPage() {
-            return page;
-        }
+    /**
+     * Setter for page
+     *
+     * @param page
+     */
+    public void setPage(String page) {
+        this.page = page;
+    }
 
-        /*
-            Displays the Curated Businesses for each category
-            categories include: Food, Active Life, Hotels & Travel, and Shopping
-         */
-        public void displayCuratedBusinesses(String title) {
-            try {
-                Stage newWindow = new Stage();
-                newWindow.setTitle(title);
-                setPage(title);
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                Pane root = fxmlLoader.load(getClass().getResource("displayForCuratedBusinesses.fxml").openStream());
-                newWindow.setScene(new Scene(root));
-                newWindow.show();
+    /**
+     * gets the page
+     *
+     * @return
+     */
+    public static String getPage() {
+        return page;
+    }
 
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    /**
+     * Displays the Curated Businesses for each category
+     * categories include: Food, Active Life, Hotels & Travel, and Shopping
+     *
+     * @param title
+     */
+    public void displayCuratedBusinesses(String title) {
+        try {
+            Stage newWindow = new Stage();
+            newWindow.setTitle(title);
+            setPage(title);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            Pane root = fxmlLoader.load(getClass().getResource("displayForCuratedBusinesses.fxml").openStream());
+            newWindow.setScene(new Scene(root));
+            newWindow.show();
 
-        /*
-            Displays the Food businesses with the highest ratings
-            when the Food Button is clicked
-            Event Handling
-         */
-        public void goToFoodBusinesses(ActionEvent actionEvent) {
-            displayCuratedBusinesses("Food");
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        /*
-            Displays the Active Life businesses with the highest ratings
-            when the Active Life Button is clicked
-            Event Handling
-         */
-        public void goToActiveLifeBusinesses(ActionEvent actionEvent) {
-            displayCuratedBusinesses("Active Life");
-        }
-        /*
-            Displays the Hotels & Travel businesses with the highest ratings
-            when the Hotels & Travel Button is clicked
-            Event Handling
-         */
-        public void goToHotelsAndTravelBusinesses(ActionEvent actionEvent) {
-            displayCuratedBusinesses("Hotels & Travel");
-        }
+    }
 
-        /*
-            Displays the Shopping businesses with the highest ratings
-            when the Shopping Button is clicked
-            Event Handling
-         */
-        public void goToShoppingBusinesses(ActionEvent actionEvent) {
-            displayCuratedBusinesses("Shopping");
-        }
+    /**
+     * Displays the Food businesses with the highest ratings
+     * when the Food Button is clicked
+     * Event Handling
+     *
+     * @param actionEvent
+     */
+    public void goToFoodBusinesses(ActionEvent actionEvent) {
+        displayCuratedBusinesses("Food");
+    }
+
+    /**
+     * Displays the  Active Life businesses with the highest ratings
+     * when the  Active Life Button is clicked
+     * Event Handling
+     *
+     * @param actionEvent
+     */
+    public void goToActiveLifeBusinesses(ActionEvent actionEvent) {
+        displayCuratedBusinesses("Active Life");
+    }
+
+    /**
+     * Displays the Hotels & Travel businesses with the highest ratings
+     * when the  Hotels & Travel Button is clicked
+     * Event Handling
+     *
+     * @param actionEvent
+     */
+    public void goToHotelsAndTravelBusinesses(ActionEvent actionEvent) {
+        displayCuratedBusinesses("Hotels & Travel");
+    }
+
+    /**
+     * Displays the Shopping businesses with the highest ratings
+     * when the Shopping Button is clicked
+     * Event Handling
+     *
+     * @param actionEvent
+     */
+    public void goToShoppingBusinesses(ActionEvent actionEvent) {
+        displayCuratedBusinesses("Shopping");
+    }
 
 }

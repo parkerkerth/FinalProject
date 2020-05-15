@@ -22,6 +22,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
+/**
+ * Controller for the curated businesses
+ */
 public class displayForCuratedBusinessController implements Initializable {
 
     @FXML
@@ -38,20 +41,42 @@ public class displayForCuratedBusinessController implements Initializable {
 
     ObservableList<Business> oblist = FXCollections.observableArrayList();
 
+    /**
+     * Initializes the page
+     *
+     * @param location
+     * @param resources
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         String pageName = viewsController.getPage();
         loadData(pageName);
     }
 
+    /**
+     * gets the business ID
+     *
+     * @return
+     */
     public static String getId() {
         return id;
     }
 
+    /**
+     * sets the id for the business
+     *
+     * @param id
+     */
     public static void setId(String id) {
         displayForCuratedBusinessController.id = id;
     }
 
+    /**
+     * loads the Businesses for the selected catgeories
+     * will load the business name and the rating measured in stars for the business
+     *
+     * @param pageName
+     */
     private void loadData(String pageName) {
         String sql = "SELECT business_id, name, stars FROM business WHERE categories LIKE '%" + pageName + "%' ORDER BY stars DESC LIMIT 20";
         try {
@@ -73,12 +98,24 @@ public class displayForCuratedBusinessController implements Initializable {
         table.setItems(oblist);
     }
 
+    /**
+     * Event handling for Back button
+     * when pressed the window is closed
+     *
+     * @param event
+     */
     @FXML
-    public void goBack(ActionEvent event){
+    public void goBack(ActionEvent event) {
         Stage stage = (Stage) back.getScene().getWindow();
         stage.close();
     }
 
+    /**
+     * Review page for the business
+     *
+     * @param business_id
+     * @param name
+     */
     public void displayReviewPage(String business_id, String name) {
         try {
             Stage newWindow = new Stage();
@@ -94,6 +131,12 @@ public class displayForCuratedBusinessController implements Initializable {
         }
     }
 
+    /**
+     * Event handling when the business is clicked
+     * displays the reviews for the business
+     *
+     * @param event
+     */
     @FXML
     public void goToBusiness(MouseEvent event) {
         Business business = table.getSelectionModel().getSelectedItem();
