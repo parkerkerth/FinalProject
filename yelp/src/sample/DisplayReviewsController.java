@@ -1,24 +1,17 @@
 package sample;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
-
-import static sample.displayForCuratedBusinessController.getId;
 
 public class DisplayReviewsController implements Initializable {
 
@@ -36,7 +29,7 @@ public class DisplayReviewsController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String id = getId();
+        String id = displayForCuratedBusinessController.getId();
         loadReviews(id);
     }
 
@@ -53,11 +46,7 @@ public class DisplayReviewsController implements Initializable {
                 Double stars = rs.getDouble("stars");
                 String name = rs.getString("name");
                 String elite = rs.getString("elite");
-                int yearsElite = 0;
-                if (elite.length() > 3) {
-                    String[] years = elite.split(",");
-                    yearsElite = years.length;
-                }
+                int yearsElite = calculateElite(elite);
                 if(yearsElite == 0) {
                     allReviews = allReviews + stars.toString() + STARS + text + "\n" + name + NOT;
                 }
@@ -81,6 +70,14 @@ public class DisplayReviewsController implements Initializable {
     public void goBack(ActionEvent event){
         Stage stage = (Stage) back.getScene().getWindow();
         stage.close();
+    }
+
+    public static int calculateElite(String eliteColumn) {
+        if (eliteColumn.length() > 3) {
+            String[] years = eliteColumn.split(",");
+            return years.length;
+        }
+        return 0;
     }
 
 }

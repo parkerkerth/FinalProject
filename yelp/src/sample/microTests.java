@@ -1,8 +1,5 @@
 package sample;
-import java.sql.Statement;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 import org.junit.jupiter.api.*;
 
@@ -23,10 +20,15 @@ public class microTests {
         assertNotNull(connection);
     }
 
-    @AfterAll
-    public static void closeConnection() {
+    //tests that calculateElite returns 0 when the elite column is empty
+    @Test
+    public void testCalculateElite() {
+        String sql = "SELECT elite FROM user WHERE user_id = 'xU02wVd4akbHrk8JiOdDYQ'";
         try {
-            connection.close();
+            ResultSet rs = connection.createStatement().executeQuery(sql);
+            String elite = rs.getString("elite");
+            int years = DisplayReviewsController.calculateElite(elite);
+            assertEquals(0, years);
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
@@ -37,5 +39,14 @@ public class microTests {
         Statement statement = connection.createStatement();
         DBConnection.closeStatement(statement);
         assertTrue(statement.isClosed());
+    }
+
+    @AfterAll
+    public static void closeConnection() {
+        try {
+            connection.close();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

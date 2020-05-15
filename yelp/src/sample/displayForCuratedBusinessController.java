@@ -22,8 +22,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
-import static sample.viewsController.getPage;
-
 public class displayForCuratedBusinessController implements Initializable {
 
     @FXML
@@ -42,7 +40,7 @@ public class displayForCuratedBusinessController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        String pageName = getPage();
+        String pageName = viewsController.getPage();
         loadData(pageName);
     }
 
